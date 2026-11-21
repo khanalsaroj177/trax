@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -66,11 +67,16 @@ class _MyAppState extends State<MyApp>
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0xFF101D40),
         body: AnimatedContainer(
           duration: const Duration(milliseconds: 800),
           curve: Curves.easeInOutCubic,
-          color: _isDarkMode ? Colors.black : Colors.white,
+
+          // Background transition
+          color: _isDarkMode
+              ? const Color(0xFF101D40)
+              : const Color(0xFFADD8F0),
+
           child: SafeArea(
             child: Align(
               alignment: Alignment.topRight,
@@ -95,21 +101,20 @@ class _MyAppState extends State<MyApp>
                     curve: Curves.easeInOut,
                     width: 44,
                     height: 44,
+
+                    // Moon circle ALWAYS bright white
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: _isDarkMode
-                          ? Colors.white
-                          : Colors.black,
+                      color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                          color: _isDarkMode
-                              ? Colors.white.withValues(alpha: 0.18)
-                              : Colors.black.withValues(alpha: 0.18),
-                          blurRadius: 14,
-                          spreadRadius: 2,
+                          color: Colors.white.withValues(alpha: 0.30),
+                          blurRadius: 18,
+                          spreadRadius: 3,
                         ),
                       ],
                     ),
+
                     child: Material(
                       color: Colors.transparent,
                       shape: const CircleBorder(),
@@ -132,9 +137,9 @@ class _MyAppState extends State<MyApp>
                               Icons.dark_mode_outlined,
                               key: const ValueKey('moon'),
                               size: 25,
-                              color: _isDarkMode
-                                  ? Colors.black
-                                  : Colors.white,
+
+                              // Always visible against white
+                              color: const Color(0xFF101D40),
                             ),
                           ),
                         ),
